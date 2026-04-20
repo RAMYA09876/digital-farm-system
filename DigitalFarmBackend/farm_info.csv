@@ -1,0 +1,51 @@
+farm_id,farm_name,location,herd_size,hygiene_score,inspection_score
+1,Farm_1,Karnataka,92,85.95,68.57
+2,Farm_2,Tamil Nadu,457,63.59,85.92
+3,Farm_3,Karnataka,382,74.77,61.04
+4,Farm_4,Tamil Nadu,199,77.69,60.93
+5,Farm_5,Tamil Nadu,446,82.75,79.07
+6,Farm_6,Tamil Nadu,309,80.62,88.33
+7,Farm_7,Karnataka,468,88.2,84.43
+8,Farm_8,Kerala,222,65.44,93.5
+9,Farm_9,Kerala,132,63.25,63.39
+10,Farm_10,Kerala,389,69.26,61.52
+11,Farm_11,Telangana,354,64.37,92.28
+12,Farm_12,Karnataka,362,70.26,82.0
+13,Farm_13,Kerala,375,66.73,62.43
+14,Farm_14,Tamil Nadu,475,70.13,62.79
+15,Farm_15,Tamil Nadu,131,73.3,75.87
+16,Farm_16,Kerala,163,72.96,67.33
+17,Farm_17,Kerala,439,92.78,82.68
+18,Farm_18,Tamil Nadu,353,85.52,65.72
+19,Farm_19,Telangana,218,94.63,82.4
+20,Farm_20,Tamil Nadu,430,71.35,86.89
+21,Farm_21,Karnataka,197,88.76,88.18
+22,Farm_22,Telangana,217,62.32,91.96
+23,Farm_23,Kerala,188,82.94,73.85
+24,Farm_24,Telangana,153,69.27,68.63
+25,Farm_25,Kerala,462,80.46,91.42
+26,Farm_26,Telangana,265,67.68,94.91
+27,Farm_27,Telangana,126,86.45,90.14
+28,Farm_28,Tamil Nadu,401,65.6,83.82
+29,Farm_29,Karnataka,277,73.36,94.86
+30,Farm_30,Kerala,363,90.13,60.4
+31,Farm_31,Karnataka,429,90.97,86.28
+32,Farm_32,Kerala,137,70.27,65.54
+33,Farm_33,Karnataka,449,90.65,69.22
+34,Farm_34,Tamil Nadu,339,91.94,90.47
+35,Farm_35,Kerala,407,77.77,66.96
+36,Farm_36,Kerala,470,65.65,93.37
+37,Farm_37,Karnataka,386,71.35,60.68
+38,Farm_38,Kerala,493,70.76,62.03
+39,Farm_39,Karnataka,123,85.62,88.56
+40,Farm_40,Tamil Nadu,145,83.09,93.14
+41,Farm_41,Tamil Nadu,215,78.47,81.23
+42,Farm_42,Tamil Nadu,356,86.43,84.15
+43,Farm_43,Kerala,284,94.83,82.75
+44,Farm_44,Telangana,344,75.8,68.68
+45,Farm_45,Karnataka,253,60.74,79.39
+46,Farm_46,Tamil Nadu,83,62.48,82.09
+47,Farm_47,Tamil Nadu,114,91.69,90.09
+48,Farm_48,Karnataka,343,68.33,83.41
+49,Farm_49,Tamil Nadu,356,64.63,92.74
+50,Farm_50,Telangana,204,87.46,88.26
