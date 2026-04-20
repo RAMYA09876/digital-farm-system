@@ -112,46 +112,42 @@ page = st.sidebar.radio("Navigation", [
 # ===============================
 def get_data():
     try:
-        df = pd.read_csv("https://raw.githubusercontent.com/RAMYA09876/Digital-Farm-Backend/main/amu_residue_records_6000.csv")
+        response = requests.get(f"{BASE_URL}/livestock")
+        
+        if response.status_code != 200:
+            st.error("Failed to fetch data from backend")
+            return pd.DataFrame()
 
-        # 👉 FIX: CREATE MRL COLUMN
+        data = response.json()
+        df = pd.DataFrame(data)
+
+        if df.empty:
+            return df
+
+        df.columns = df.columns.str.lower()
+
+        # Create MRL if missing
         if "mrl" not in df.columns:
-            
             if "residue_mg_per_kg" in df.columns:
                 df["mrl"] = df["residue_mg_per_kg"]
-                
-            else:
-                st.error(f"❌ No residue column found. Available columns: {list(df.columns)}")
-                return pd.DataFrame()
 
         df["mrl"] = pd.to_numeric(df["mrl"], errors="coerce").fillna(0)
 
+        # Result
         df["result"] = df["mrl"].apply(lambda x: "Safe" if x <= 0.05 else "Unsafe")
 
-        # 👉 FIX: RESULT
-        def classify(row):
-            ratio = row["residue_mg_per_kg"] / row["mrl_limit_mg_per_kg"]
-
-            if ratio <= 1:
-                return "Safe"
-            elif ratio <= 1.5:
-                return "Warning"
-            else:
-                return "Critical"
-
-        df["risk_level"] = df.apply(classify, axis=1)
-
-        # 👉 FIX: OTHER COLUMNS
-        if "confidence" not in df.columns:
-            df["confidence"] = 100
-
-        if "timestamp" not in df.columns:
-            df["timestamp"] = pd.date_range(start="2024-01-01", periods=len(df))
+        # Risk level
+        if "mrl_limit_mg_per_kg" in df.columns:
+            df["risk_level"] = df.apply(
+                lambda row: "Safe" if row["residue_mg_per_kg"] <= row["mrl_limit_mg_per_kg"]
+                else "Critical",
+                axis=1
+            )
 
         return df
 
     except Exception as e:
-        st.error(f"Error loading CSV: {e}")
+        st.error(f"Error fetching backend data: {e}")
         return pd.DataFrame()
     
     
