@@ -48,7 +48,7 @@ model = load_model()
 
 st.set_page_config(page_title="Digital Farm System", layout="wide")
 
-BASE_URL = "https://digital-farm-backend.onrender.com"
+BASE_URL = "https://digital-farm-backend-1.onrender.com"
 
 USERS = {
     "admin": "1234",
