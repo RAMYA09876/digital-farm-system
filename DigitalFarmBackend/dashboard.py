@@ -113,43 +113,38 @@ page = st.sidebar.radio("Navigation", [
 def get_data():
     try:
         response = requests.get(f"{BASE_URL}/livestock")
-        
+
         if response.status_code != 200:
-            st.error("Failed to fetch data from backend")
+            st.error("Backend fetch failed")
             return pd.DataFrame()
 
         data = response.json()
-        df = pd.DataFrame(data)
 
-        if df.empty:
-            return df
+        if not data:
+            st.warning("No data from backend")
+            return pd.DataFrame()
+
+        df = pd.DataFrame(data)
 
         df.columns = df.columns.str.lower()
 
-        # Create MRL if missing
+        # Create MRL column if missing
         if "mrl" not in df.columns:
             if "residue_mg_per_kg" in df.columns:
                 df["mrl"] = df["residue_mg_per_kg"]
 
         df["mrl"] = pd.to_numeric(df["mrl"], errors="coerce").fillna(0)
 
-        # Result
-        df["result"] = df["mrl"].apply(lambda x: "Safe" if x <= 0.05 else "Unsafe")
-
-        # Risk level
-        if "mrl_limit_mg_per_kg" in df.columns:
-            df["risk_level"] = df.apply(
-                lambda row: "Safe" if row["residue_mg_per_kg"] <= row["mrl_limit_mg_per_kg"]
-                else "Critical",
-                axis=1
-            )
+        # Safe / Unsafe
+        df["result"] = df["mrl"].apply(
+            lambda x: "Safe" if x <= 0.05 else "Unsafe"
+        )
 
         return df
 
     except Exception as e:
-        st.error(f"Error fetching backend data: {e}")
+        st.error(f"Error: {e}")
         return pd.DataFrame()
-    
     
 
 # ===============================
